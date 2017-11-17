@@ -1,4 +1,5 @@
 # Graveyard-Tools
+This repository will be assorted list of tools intended for use by IT Pro's to resolve specific issues. 
 
 ## reg_lang.ps1 
 This is a script to purge references to language packs that are not installed that got incorrectly placed into the servicing components.  
