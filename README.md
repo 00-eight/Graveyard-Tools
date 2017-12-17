@@ -25,3 +25,13 @@ The script works by purging references that contain the modified local code from
 3. Edit the reg_lang.ps1 in two places located with __# Replace en-US with locale 
 4. Copy paste into an elevated PowerShell window. __note__ *if you have more than one locale to remove I recommend closing and reopening a new powershell window each time.*
 5. Set permisions back on the registry key. 
+
+## kpcrb.txt
+This is a [windbg script file](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/using-script-files)
+ to help visualize information from the _KPCRB.  
+This is a work in progress last thing todo is get the iteration loop working to change processors for data population. 
+#### Installation:
+Create a new folder where windbg is installed I used _scripts_ c:\debuggers\scripts and place kpcrb.txt in that location.   
+#### Usage:
+`$$>a<c:\debuggers\scripts\kpcrb.txt <num proc>`
+
