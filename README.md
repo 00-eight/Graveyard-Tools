@@ -34,7 +34,7 @@ This is a python script used to generate a [windbg script file](https://docs.mic
 This requires python3 with no additional dependencies.
 
 #### Usage:
-`python pygen_kprcb <ncpu> <out_file>`   
+`python pygen_kprcb.py <ncpu> <out_file>`   
 _ncpu_ is the highest number as reported by !cpuid
 *out_file* is path where you want the generated script
 
@@ -77,7 +77,7 @@ Inside of windbg you may call the generated scriptfile
  ffffd000aebc0180 00c 0000000000000001 0 0000000e  1         0   101719c  0   ffffd000aebf1fb0  0    0000000000000500
  ffffd000aecc3180 00d 0000000000000001 0 0000000f  0         0   101719c  0   ffffd000aecf4fb0  0    0000000000000500
  ffffd000aee40180 00e 0000000000000001 0 0000000f  0         0   101719c  0   ffffd000aee71fb0  0    0000000000000500
- ffffd000aef43180 00f 0000000000000001 0 00000017  0         0   1016ed4  0   ffffd000aef74fb0  0    0000000000000500
+ ffffd000aef43180 00f 0000000000000001 0 00000017  0         0   1016ed4  0   <---
  ffffd000af0c0180 010 0000000000000001 0 0000000e  1         0   101719c  0   ffffd000af0f1fb0  0    0000000000000500
  ffffd000af1c3180 011 0000000000000001 0 0000000f  0         0   101719c  0   ffffd000af1f4fb0  0    0000000000000500
  ffffd000af2c7180 012 0000000000000001 0 00000012  0         0   101719c  0   ffffd000af2f8fb0  0    0000000000000500
