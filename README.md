@@ -1,5 +1,7 @@
 # Graveyard-Tools
 This repository will be assorted list of tools intended for use by professionals to resolve specific issues. 
+* [reg_lang](https://github.com/00-eight/Graveyard-Tools#reg_langps1)
+* [pygen_kprcb](https://github.com/00-eight/Graveyard-Tools#pygen_kprcb)
 
 ## reg_lang.ps1 
 This is a script to purge references to language packs that are not installed that got incorrectly placed into the servicing components.  
