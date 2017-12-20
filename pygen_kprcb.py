@@ -1,5 +1,5 @@
 # Python3 script to generate windbg command script for visualizing _KPRCB information
-# Version 1
+# Version 1.1
 # Author: Kristian Lamb
 # This is provided "AS IS" with no warranties or rights.
 
@@ -57,7 +57,8 @@ r $t12 = @@(@$prcb->QuantumEnd)
 r $t13 = @@(@$prcb->PeriodicCount)
 r $t14 = @@(@$prcb->LastTick)
 r $t15 = @@(@$prcb->DpcRoutineActive)
-r $t16 = @@(@$prcb->DpcStack)
+r $t2 = @@(@$prcb->DpcData)
+r $t16 = @@(((nt!_KDPC_DATA *)@$t2)->ActiveDpc)
 r $t17 = @@(@$prcb->DpcTimeCount)
 r $t18 = @@(@$prcb->DpcTimeLimit)
 .printf " %p %03p %p %1p %08p  %1p         %1p   %07p  %1p   %p  %1p    %p\\n",$t1,$t8,$t9,$t10,$t11,$t12,$t13,$t14,$t15,$t16,$t17,$t18
