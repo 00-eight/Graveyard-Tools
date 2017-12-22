@@ -10,9 +10,9 @@ try:
 	ncpu = int(sys.argv[1])
 	out_file = sys.argv[2]
 except:
-	print("--> FAIL: You must provide number of cpu's and outputfile")
+	print("--> ERROR: You must provide number of cpu's and outputfile")
 	print("--> usage: python <script.py> <ncpu> <dest_file>")
-	print("\t   python dbgen_kpcrb.py 31 c:\debuggers\scripts\kpcrb.txt")
+	print("\t   python pygen_kprcb.py 31 c:\debuggers\scripts\kprcb.txt")
 	sys.exit(1)
 	
 a = '''
@@ -42,10 +42,7 @@ $$
 .printf "        KPRCB     CPU    IsrDpcStats   |    |      |         |      |     |       ActiveDpc     |    DpcTimeLimit\\n"
 .printf " ---------------- --- ---------------- |    |      |         |      |     |   ----------------  |    ------------\\n"
 $$
-$$ Pull out data from KPCRB and print formated row
-$$ TODO
-$$ Update script to Iterate through ncpu $($arg1) compared to $t0 to use below code to populate data for table.
-$$ .for(r $t0=0,$t0 < ${$arg1},$t0++){~$t0s ... do below ...}
+$$ Pull out data from KPRCB and print formated row
 '''
 b = '''
 r $t1 = @$prcb
