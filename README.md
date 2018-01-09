@@ -30,7 +30,7 @@ The script works by purging references that contain the modified local code from
 
 ## pygen_kprcb
 This is a python script used to generate a [windbg script file](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/using-script-files)
- to help visualize information from the _KPRCB for each cpu.  
+ to help visualize information from the _KPRCB for each cpu.   
 
 #### Installation:
 This requires python3 with no additional dependencies.
@@ -38,7 +38,11 @@ This requires python3 with no additional dependencies.
 #### Usage:
 `python pygen_kprcb.py <ncpu> <out_file>`   
 _ncpu_ is the highest number as reported by !cpuid
-*out_file* is path where you want the generated script
+*out_file* is path where you want the generated script   
+   
+The resulting windbg script file is for __2012 r2/8.1__, if you attempt to run against 2012/8 target 
+ you will need to modify the resulting <out_file> such that the Pseudo Register for _IsrDpcStats_ & _ActiveDpc_ is initialized to 0.
+
 
 __Example__ 
 ```
@@ -55,7 +59,7 @@ CP  F/M/S  Manufacturer     MHz
 
 Inside of windbg you may call the generated scriptfile 
 ```
-0: kd> $$>a<c:\debuggers\scripts\kprcb.txt
+0: kd> $$><c:\debuggers\scripts\kprcb.txt
                                        InterruptRequest
                                        |    InterruptRate
                                        |    |      QuantumEnd
