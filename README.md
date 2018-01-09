@@ -37,7 +37,7 @@ This requires python3 with no additional dependencies.
 
 #### Usage:
 `python pygen_kprcb.py <ncpu> <out_file>`   
-_ncpu_ is the highest number as reported by !cpuid
+_ncpu_ is the highest number as reported by !cpuid   
 *out_file* is path where you want the generated script   
    
 The resulting windbg script file is for __2012 r2/8.1__, if you attempt to run against 2012/8 target 
