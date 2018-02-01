@@ -1,0 +1,54 @@
+$$
+$$ =============================================================================
+$$ io3
+$$
+$$ Version: 1.0
+$$
+$$
+$$
+$$ Compatibility: Win64 KERNEL Dumps
+$$
+$$ Usage: $$>a<c:\debuggers\scripts\io.txt <drvobj>
+$$ 
+$$
+$$ Kristian Lamb
+$$
+$$ All my scripts are provided "AS IS" with no warranties, and confer no rights. 
+$$ =============================================================================
+$$
+.printf "\nName                  Devobj                 _RAID_UNIT_EXTENSION  Port  Bus   Tgt  LUN\n"
+.printf "---------------       ----------------       --------------------  ----  ---   ---  ---\n"
+r $t0 = ${$arg1}
+r? $t0 = ((nt!_DRIVER_OBJECT *)@$t0)
+r? $t1 = @$t0->DeviceObject
+.while (@@c++(@$t1->NextDevice) != 0)
+{
+	r? $t2 = @@c++(@$t1->DeviceExtension)
+	r? $t2 = ((storport!_RAID_UNIT_EXTENSION *)@$t2)
+	r? $t3 = @@c++(@$t2->StorAddressBTL8)
+	.printf "[Name]                %p       %p      %0d    [bus]  %3d   %0d\n",@$t1,@$t2,@@c++(@$t2->AddressPort),@@c++(@$t3.Target),@@c++(@$t3.Lun)
+	r? $t4 = @@c++(@$t2->PendingQueue)
+	.printf "\tPendingQueue:               Timeout: %0p\n",@@c++(@$t4.Timeout)
+	.if @@c++(@$t4.Timeout != 0xffffffff)
+	{
+		.printf "\t   XRB                 IRP                SRB\n"
+		r? $t5 = ((storport!_LIST_ENTRY *)@@c++(&@$t4))
+		.for (r? $t6 = @$t5->Flink;
+		(@$t6 != 0) & (@$t6 != @$t5);
+		r? $t6 = @@c++(@$t6->Flink))
+		{
+			r? $t7 = @@c++(#FIELD_OFFSET(storport!_EXTENDED_REQUEST_BLOCK, PendingLink))
+			r $t8 = (@$t6 - @$t7)
+			r? $t8 = ((storport!_EXTENDED_REQUEST_BLOCK *)@$t8)
+			.printf "\t   %p    %p   %p\n",@$t8, @@c++(@$t8->Irp),@@c++(@$t8->Srb)
+		}
+	}
+	.printf "\n"
+	r? $t1 = @$t1->NextDevice
+}
+$$ bottom dev _RAID_ADAPTER_EXTENSION
+.printf "\nName                  Devobj                 _RAID_ADAPTER_EXTENSION  PortNumber\n"
+.printf "---------------       ----------------       --------------------     --------\n"
+r? $t2 = @@c++(@$t1->DeviceExtension)
+r? $t2 = ((storport!_RAID_ADAPTER_EXTENSION *)@$t2)
+.printf "[Name]                %p       %p         %0d\n",@$t1,@$t2,@@c++(@$t2->PortNumber)
