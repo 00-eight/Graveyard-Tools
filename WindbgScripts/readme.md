@@ -63,3 +63,49 @@ Inside of windbg you may call the generated scriptfile
  ffffd000af794180 016 0000000000000001 0 0000000e  1         0   101719c  0   0000000000000000  0    0000000000000500
  ffffd000af8d7180 017 0000000000000001 0 0000000f  0         0   101719c  0   0000000000000000  0    0000000000000500
 ```
+
+## Io3
+```
+6: kd> !object \driver\megasas
+Object: ffffe000ec7deb90  Type: (ffffe000ec772c60) Driver
+    ObjectHeader: ffffe000ec7deb60 (new version)
+    HandleCount: 0  PointerCount: 10
+    Directory Object: ffffc000948cdb40  Name: megasas
+6: kd> $$>a<c:\debuggers\scripts\io3.txt ffffe000ec7deb90
+
+Name                  Devobj                 _RAID_UNIT_EXTENSION  Port  Bus   Tgt  LUN
+---------------       ----------------       --------------------  ----  ---   ---  ---
+[Name]                ffffe000ed67b060       ffffe000ed67b1b0      2       1    64    0
+	PendingQueue:               Timeout: ffffffff
+
+[Name]                ffffe000ed67d060       ffffe000ed67d1b0      2       1     5    0
+	PendingQueue:               Timeout: ffffffff
+
+[Name]                ffffe000ed605060       ffffe000ed6051b0      2       1     4    0
+	PendingQueue:               Timeout: ffffffff
+
+[Name]                ffffe000ed607060       ffffe000ed6071b0      2       1     3    0
+	PendingQueue:               Timeout: ffffffff
+
+[Name]                ffffe000ed609060       ffffe000ed6091b0      2       1     2    0
+	PendingQueue:               Timeout: ffffffff
+
+[Name]                ffffe000ed64d060       ffffe000ed64d1b0      2       1     1    0
+	PendingQueue:               Timeout: ffffffff
+
+[Name]                ffffe000ed612060       ffffe000ed6121b0      2       1     0    0
+	PendingQueue:               Timeout: 1e
+	   XRB                 IRP                SRB
+	   ffffd000a0fca010    ffffec01d5a56010   ffffec01d55e8b70
+	   ffffd000a0ff1010    ffffec01d5b7f390   ffffec01d5a2adb0
+	   ffffd000a20ec010    ffffe6002fc72a10   ffffea015a2de980
+	   ffffd000a2204010    ffffe401b4a57cf0   ffffe401b45ef880
+	   ffffd0009ef41010    ffffec01d5b2c410   ffffe6002fe2c100
+	   ffffd000a21a6010    ffffec01d5b79b60   ffffec01d5acd340
+	   ffffd000a21af010    ffffec01d5b9d480   ffffec01d5b9d7a0
+
+
+Name                  Devobj                 _RAID_ADAPTER_EXTENSION  PortNumber
+---------------       ----------------       --------------------     --------
+[Name]                ffffe000ed64f050       ffffe000ed64f1a0         2
+```
