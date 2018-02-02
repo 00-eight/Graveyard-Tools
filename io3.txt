@@ -25,8 +25,8 @@ r? $t1 = @$t0->DeviceObject
 {
 	r? $t2 = @@c++(@$t1->DeviceExtension)
 	r? $t2 = ((storport!_RAID_UNIT_EXTENSION *)@$t2)
-	r? $t3 = @@c++(@$t2->StorAddressBTL8)
-	.printf "[Name]                %p       %p      %0d    [bus]  %3d   %0d\n",@$t1,@$t2,@@c++(@$t2->AddressPort),@@c++(@$t3.Target),@@c++(@$t3.Lun)
+	r? $t3 = @@c++(@$t2->Address)
+	.printf "[Name]                %p       %p      %0d     %3d   %3d   %0d\n",@$t1,@$t2,@@c++(@$t2->AddressPort),@@c++(@$t3.PathId),@@c++(@$t3.TargetId),@@c++(@$t3.Lun)
 	r? $t4 = @@c++(@$t2->PendingQueue)
 	.printf "\tPendingQueue:               Timeout: %0p\n",@@c++(@$t4.Timeout)
 	.if @@c++(@$t4.Timeout != 0xffffffff)
