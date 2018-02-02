@@ -1,3 +1,7 @@
+#WindbgScripts
+* [pygen_kprcb](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#pygen_kprcb)
+* [io3](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#io3)
+
 ## pygen_kprcb
 This is a python script used to generate a [windbg script file](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/using-script-files)
  to help visualize information from the _KPRCB for each cpu.   
@@ -65,12 +69,16 @@ Inside of windbg you may call the generated scriptfile
 ```
 
 ## Io3
+
 ```
 6: kd> !object \driver\megasas
 Object: ffffe000ec7deb90  Type: (ffffe000ec772c60) Driver
     ObjectHeader: ffffe000ec7deb60 (new version)
     HandleCount: 0  PointerCount: 10
     Directory Object: ffffc000948cdb40  Name: megasas
+```
+Pass the drvobj as argument to io3
+```
 6: kd> $$>a<c:\debuggers\scripts\io3.txt ffffe000ec7deb90
 
 Name                  Devobj                 _RAID_UNIT_EXTENSION  Port  Bus   Tgt  LUN
