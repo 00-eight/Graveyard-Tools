@@ -1,14 +1,14 @@
 $$
 $$ =============================================================================
-$$ io3
+$$ io4
 $$
 $$ Version: 1.0
 $$
+$$ Notes: If statment on 37 has not been tested when evaluates to true
 $$
+$$ Compatibility: Win64 10 KERNEL Dumps
 $$
-$$ Compatibility: Win64 8.1 KERNEL Dumps
-$$
-$$ Usage: $$>a<c:\debuggers\scripts\io.txt <drvobj>
+$$ Usage: $$>a<c:\debuggers\scripts\io4.txt <drvobj>
 $$ 
 $$
 $$ Kristian Lamb
@@ -29,8 +29,12 @@ r? $t1 = @$t0->DeviceObject
 	r? $t3 = @@c++(@$t2->Address)
 	.printf "%.8mu              %p       %p      %0d     %3d   %3d  %3d\n",@@c++(@$t19->Name.Buffer),@$t1,@$t2,@@c++(@$t2->AddressPort),@@c++(@$t3.PathId),@@c++(@$t3.TargetId),@@c++(@$t3.Lun)
 	r? $t4 = @@c++(@$t2->PendingQueue)
-	.printf "\tPendingQueue:               Timeout: %0p\n",@@c++(@$t4.Timeout)
-	.if @@c++(@$t4.Timeout != 0xffffffff)
+	$$ modified lines 33,34,35,36,37
+	r? @$t4 = @$t4->Queues
+	r @$t18 = @@c++(#FIELD_OFFSET(storport!_STOR_EVENT_QUEUE_NODE, Timeout))
+	r $t17 = @@masm(dwo(@$t4 + @$t18))
+	.printf "\tPendingQueue:               Timeout: %0p\n",@@c++(@$t17)
+	.if @@c++(@$t17 != 0xffffffff)
 	{
 		.printf "\t   XRB                 IRP                SRB\n"
 		r? $t5 = ((storport!_LIST_ENTRY *)@@c++(&@$t4))
