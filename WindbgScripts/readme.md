@@ -68,7 +68,7 @@ Inside of windbg you may call the generated scriptfile
  ffffd000af8d7180 017 0000000000000001 0 0000000f  0         0   101719c  0   0000000000000000  0    0000000000000500
 ```
 
-## Io3
+## Io3 (2012 R2)
 
 ```
 6: kd> !object \driver\megasas
@@ -116,4 +116,32 @@ Name                  Devobj                 _RAID_UNIT_EXTENSION  Port  Bus   T
 Name                  Devobj                 _RAID_ADAPTER_EXTENSION  PortNumber
 ---------------       ----------------       --------------------     --------
 [Name]                ffffe000ed64f050       ffffe000ed64f1a0         2
+```
+
+## Io4 (2016)
+
+```
+6: kd> !object \driver\megasas
+Object: ffffe000ec7deb90  Type: (ffffe000ec772c60) Driver
+    ObjectHeader: ffffe000ec7deb60 (new version)
+    HandleCount: 0  PointerCount: 10
+    Directory Object: ffffc000948cdb40  Name: megasas
+```
+Pass the drvobj as argument to io3
+
+```
+2: kd> $$>a<c:\debuggers\scripts\io4.txt ffffbe08bd1b3b80
+
+Name                  Devobj                 _RAID_UNIT_EXTENSION  Port  Bus   Tgt  LUN
+---------------       ----------------       --------------------  ----  ---   ---  ---
+00000042              ffffbe08bd195060       ffffbe08bd1951b0      2       1    64    0
+	PendingQueue:               Timeout: ffffffff
+
+00000041              ffffbe08bd198060       ffffbe08bd1981b0      2       1     0    0
+	PendingQueue:               Timeout: ffffffff
+
+
+Name                  Devobj                 _RAID_ADAPTER_EXTENSION  PortNumber
+---------------       ----------------       --------------------     --------
+RaidPort2             ffffbe08bd1df050       ffffbe08bd1df1a0         2
 ```
