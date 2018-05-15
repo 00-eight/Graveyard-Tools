@@ -127,7 +127,7 @@ Object: ffffe000ec7deb90  Type: (ffffe000ec772c60) Driver
     HandleCount: 0  PointerCount: 10
     Directory Object: ffffc000948cdb40  Name: megasas
 ```
-Pass the drvobj as argument to io3
+Pass the drvobj as argument to io4
 
 ```
 2: kd> $$>a<c:\debuggers\scripts\io4.txt ffffbe08bd1b3b80
