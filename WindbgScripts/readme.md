@@ -1,6 +1,7 @@
 # WindbgScripts
 * [pygen_kprcb](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#pygen_kprcb)
 * [io3](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#io3)
+* [io4](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#io4-2016)
 
 ## pygen_kprcb
 This is a python script used to generate a [windbg script file](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/using-script-files)
@@ -121,11 +122,11 @@ Name                  Devobj                 _RAID_ADAPTER_EXTENSION  PortNumber
 ## Io4 (2016)
 
 ```
-6: kd> !object \driver\megasas
-Object: ffffe000ec7deb90  Type: (ffffe000ec772c60) Driver
-    ObjectHeader: ffffe000ec7deb60 (new version)
-    HandleCount: 0  PointerCount: 10
-    Directory Object: ffffc000948cdb40  Name: megasas
+2: kd> !object \driver\percsas3
+Object: ffffbe08bd1b3b80  Type: (ffffbe08bc216c60) Driver
+    ObjectHeader: ffffbe08bd1b3b50 (new version)
+    HandleCount: 0  PointerCount: 5
+    Directory Object: ffffa90959524100  Name: percsas3
 ```
 Pass the drvobj as argument to io4
 
