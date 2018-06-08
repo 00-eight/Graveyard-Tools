@@ -6,6 +6,9 @@
  Params
     :: ParentComputer
     ::     If not Master specify FQDN of Master Sysvol
+    ::
+    :: isMaster
+    ::     Bool specifys system will be the master
 
  Example 
     :: Run From Master Server which will host Master Copy of SYSVOL
@@ -37,6 +40,14 @@ Param(
  
  if (!$isadmin){
     throw [System.AccessViolationException] "[!] Access Denied: Requires Elevation"
+ }
+
+ if (!($isMaster -or $ParentComputer)){
+    throw [System.Exception] "[!] Must Specify -isMaster or -ParentComputer"
+ } 
+
+ if ($isMaster -and $ParentComputer){
+    throw [System.Exception] "[!] You may only specify One parameter"
  }
 
  $domain = ($env:USERDNSDOMAIN).ToLower()
