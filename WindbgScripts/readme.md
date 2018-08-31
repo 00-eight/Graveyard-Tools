@@ -127,18 +127,152 @@ Object: ffffbe08bd1b3b80  Type: (ffffbe08bc216c60) Driver
 Pass the drvobj as argument to io4
 
 ```
-2: kd> $$>a<c:\debuggers\scripts\io4.txt ffffbe08bd1b3b80
+0: kd> vertarget
+Windows 10 Kernel Version 14393 MP (32 procs) Free x64
+Product: Server, suite: TerminalServer DataCenter SingleUserTS
+Built by: 14393.2339.amd64fre.rs1_release_inmarket.180611-1502
+Machine Name:
+Kernel base = 0xfffff800`9827e000 PsLoadedModuleList = 0xfffff800`98584140
+Debug session time: Thu Aug 30 19:15:12.068 2018 (UTC - 5:00)
+System Uptime: 38 days 3:18:11.520
+0: kd> $$>a<c:\my\code\graveyard-tools\windbgscripts\io4.txt ffff9c87e56372b0
 
 Name                  Devobj                 _RAID_UNIT_EXTENSION  Port  Bus   Tgt  LUN
 ---------------       ----------------       --------------------  ----  ---   ---  ---
-00000042              ffffbe08bd195060       ffffbe08bd1951b0      2       1    64    0
+0000006d              ffff9c87e5794060       ffff9c87e57941b0      0       0    26    0
 	PendingQueue:               Timeout: ffffffff
 
-00000041              ffffbe08bd198060       ffffbe08bd1981b0      2       1     0    0
+0000006c              ffff9c87e578e060       ffff9c87e578e1b0      0       0    25    0
 	PendingQueue:               Timeout: ffffffff
+
+0000006b              ffff9c87e5792060       ffff9c87e57921b0      0       0    24    0
+	PendingQueue:               Timeout: 14
+	   XRB                 IRP                SRB
+	   ffffd800ba94c010    ffff9c8d0f5f7e10   ffff9c8d0feb4af0
+	   ffffd800bb752010    ffff9c8d1079a860   ffff9c8d1079e6f0
+	   ffffd800bb62e010    ffff9c8d1070fc80   ffff9c8d107a26f0
+	   ffffd800bb10e010    ffff9c87e65248a0   ffff9c87e650f8c0
+
+0000006a              ffff9c87e5796060       ffff9c87e57961b0      0       0    23    0
+	PendingQueue:               Timeout: fffffffc
+	   XRB                 IRP                SRB
+
+00000069              ffff9c87e579a060       ffff9c87e579a1b0      0       0    22    0
+	PendingQueue:               Timeout: ffffffff
+
+00000068              ffff9c87e579e060       ffff9c87e579e1b0      0       0    21    0
+	PendingQueue:               Timeout: 12
+	   XRB                 IRP                SRB
+	   ffffd800bb03c010    ffff9c8d1074b720   ffff9c8d0fa507f0
+	   ffffd800bb516010    ffff9c8d127f58f0   ffff9c8d12e35970
+	   ffffd800bbac8010    ffff9c8d0f5f7910   ffff9c8d107446e0
+	   ffffd800bbaca010    ffff9c8d12f8a820   ffff9c8d12fe6d40
+
+00000067              ffff9c87e57a2060       ffff9c87e57a21b0      0       0    20    0
+	PendingQueue:               Timeout: fffffffd
+	   XRB                 IRP                SRB
+
+00000066              ffff9c87e5764060       ffff9c87e57641b0      0       0    19    0
+	PendingQueue:               Timeout: ffffffff
+
+00000065              ffff9c87e5768060       ffff9c87e57681b0      0       0    18    0
+	PendingQueue:               Timeout: fffffffd
+	   XRB                 IRP                SRB
+
+00000064              ffff9c87e576c060       ffff9c87e576c1b0      0       0    17    0
+	PendingQueue:               Timeout: 14
+	   XRB                 IRP                SRB
+	   ffffd800bba6a010    ffff9c8d13a116b0   ffff9c8d12f5e6b0
+	   ffffd800bb7e8010    ffff9c8d13ab76b0   ffff9c8d10327950
+	   ffffd800bbb9a010    ffff9c8d2873c880   ffff9c87e4f83990
+	   ffffd800bb898010    ffff9c8d13a326b0   ffff9c8d12bf2710
+
+00000063              ffff9c87e5770060       ffff9c87e57701b0      0       0    16    0
+	PendingQueue:               Timeout: ffffffff
+
+00000062              ffff9c87e5774060       ffff9c87e57741b0      0       0    15    0
+	PendingQueue:               Timeout: 14
+	   XRB                 IRP                SRB
+	   ffffd800bb4e0010    ffff9c8d0f3237b0   ffff9c8d0f4deda0
+	   ffffd800bbdd0010    ffff9c8d13cd46b0   ffff9c8d13054850
+	   ffffd800bbbfa010    ffff9c8d12e10a10   ffff9c8d13852990
+	   ffffd800bbb16010    ffff9c8d140f36b0   ffff9c8d13049a40
+	   ffffd800bb39a010    ffff9c8d1413d6b0   ffff9c8d13bbf740
+	   ffffd800bb5f4010    ffff9c8d138af6b0   ffff9c8d136cd7b0
+	   ffffd800bb9c0010    ffff9c8d1381b6b0   ffff9c8d13801810
+	   ffffd800bb96c010    ffff9c8d13c8e6b0   ffff9c8d130576d0
+	   ffffd800bb8c4010    ffff9c8d13ab16b0   ffff9c8d12e38f40
+	   ffffd800bb47c010    ffff9c8d141266b0   ffff9c8d1307bf40
+	   ffffd800bb862010    ffff9c8d146afe10   ffff9c8d13d9e6c0
+	   ffffd800bb5ae010    ffffa48178f8d2c0   ffff9c87e6803190
+	   ffffd800bb6ee010    ffff9c8d139de6b0   ffff9c8d12e65990
+	   ffffd800bb0c2010    ffff9c8d13b546b0   ffff9c8d12a78990
+	   ffffd800bbcfe010    ffff9c8d12f606b0   ffff9c8d139786e0
+	   ffffd800bb2d6010    ffff9c8d12f5d6b0   ffff9c8d12e826f0
+	   ffffd800bb41a010    ffff9c8d13b506b0   ffff9c8d1302e900
+	   ffffd800bb56a010    ffffa4817921ee10   ffff9c87e4fca8c0
+	   ffffd800bb35a010    ffff9c8d1216d6b0   ffff9c8d138d2700
+	   ffffd800bba82010    ffff9c8d0f5f1c60   ffff9c8d12b216d0
+	   ffffd800bb960010    ffff9c8d19e9b670   ffff9c8d17fd6840
+	   ffffd800b9ee8010    ffff9c8d13c0a6b0   ffff9c8d141e3690
+	   ffffd800bb540010    ffff9c8d13aa06b0   ffff9c8d1295d990
+	   ffffd800bb34a010    ffffa4817921ae10   ffff9c87e4fca990
+	   ffffd800bb5ca010    ffff9c87e64448a0   ffff9c87e648e8c0
+
+00000061              ffff9c87e5778060       ffff9c87e57781b0      0       0    14    0
+	PendingQueue:               Timeout: f
+	   XRB                 IRP                SRB
+	   ffffd800bb682010    ffff9c8d1386c6b0   ffff9c8d0ed57f40
+	   ffffd800bb57c010    ffff9c8d0f55be10   ffff9c87e4f9c990
+	   ffffd800bb68c010    ffff9c8d12f706b0   ffff9c8d13615700
+	   ffffd800bb65e010    ffff9c801df99c60   ffff9c8d1310dcd0
+	   ffffd800bb0d3010    ffff9c87e64708a0   ffff9c87e6492820
+	   ffffd800bb6fa010    ffff9c8d139346b0   ffff9c8d141fc7d0
+	   ffffd800bb48e010    ffff9c8d12fc9680   ffffa4817b00df40
+	   ffffd800b8d0d010    ffff9c8d13a386b0   ffff9c8d12db66a0
+	   ffffd800bbd04010    ffff9c8d1383a6b0   ffff9c8d0ed46910
+	   ffffd800bb5e4010    ffffa481786f4c80   ffff9c87e5b57f40
+	   ffffd800bb868010    ffff9c8004988010   ffff9c8d19c27760
+	   ffffd800bb828010    ffff9c8d1381d6b0   ffff9c8d1397c720
+	   ffffd800bb850010    ffff9c8d0f527e10   ffff9c8d0f8d29e0
+	   ffffd800b9174010    ffff9c8d13b636b0   ffff9c8d128bf690
+	   ffffd800b953d010    ffff9c8d1389e6b0   ffff9c8d1305bd90
+	   ffffd800bbaf8010    ffffa48180baac60   ffff9c8d13c54720
+	   ffffd800bb4de010    ffff9c8d146476b0   ffff9c8d12fc2b40
+	   ffffd800bbace010    ffff9c8d0f4d8c70   ffff9c8d136df8b0
+	   ffffd800b8d26010    ffff9c8d12ff86b0   ffff9c8d127096e0
+	   ffffd800bb7f8010    ffff9c8d13a506b0   ffff9c8d1480d6f0
+	   ffffd800bb9dc010    ffff9c8d13044a40   ffff9c8d12fe6700
+	   ffffd800bbbf6010    ffff9c8d1eaa3860   ffff9c8d14e4e730
+
+00000060              ffff9c87e577c060       ffff9c87e577c1b0      0       0    13    0
+	PendingQueue:               Timeout: 14
+	   XRB                 IRP                SRB
+	   ffffd800bb13f010    ffff9c8d0f22be10   ffff9c8d0f1ff6f0
+
+0000005f              ffff9c87e5780060       ffff9c87e57801b0      0       0    12    0
+	PendingQueue:               Timeout: ffffffff
+
+0000005e              ffff9c87e5742060       ffff9c87e57421b0      0       0    11    0
+	PendingQueue:               Timeout: ffffffff
+
+0000005d              ffff9c87e5746060       ffff9c87e57461b0      0       0    10    0
+	PendingQueue:               Timeout: 14
+	   XRB                 IRP                SRB
+	   ffffd800bb064010    ffff9c8d0f4f6960   ffff9c8d0f4f6b60
+	   ffffd800bbc2c010    ffffa481786f5c80   ffff9c8d0f6916f0
+	   ffffd800bb470010    ffff9c8d0f4beae0   ffff9c8d0f4eaf40
+
+0000005c              ffff9c87e574a060       ffff9c87e574a1b0      0       0     9    0
+	PendingQueue:               Timeout: ffffffff
+
+0000005b              ffff9c87e574e060       ffff9c87e574e1b0      0       0     8    0
+	PendingQueue:               Timeout: 14
+	   XRB                 IRP                SRB
+	   ffffd800bb668010    ffff9c8d09f99c10   ffff9c8d0d513680
 
 
 Name                  Devobj                 _RAID_ADAPTER_EXTENSION  PortNumber
 ---------------       ----------------       --------------------     --------
-RaidPort2             ffffbe08bd1df050       ffffbe08bd1df1a0         2
+RaidPort0             ffff9c87e53fa050       ffff9c87e53fa1a0         0
 ```
