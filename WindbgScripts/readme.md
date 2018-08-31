@@ -118,11 +118,11 @@ Name                  Devobj                 _RAID_ADAPTER_EXTENSION  PortNumber
 ## Io4 (2016)
 
 ```
-2: kd> !object \driver\percsas3
-Object: ffffbe08bd1b3b80  Type: (ffffbe08bc216c60) Driver
-    ObjectHeader: ffffbe08bd1b3b50 (new version)
-    HandleCount: 0  PointerCount: 5
-    Directory Object: ffffa90959524100  Name: percsas3
+0: kd> !object \Driver\LSI_SAS3i
+Object: ffff9c87e56372b0  Type: (ffff9c87e3999dc0) Driver
+    ObjectHeader: ffff9c87e5637280 (new version)
+    HandleCount: 0  PointerCount: 22
+    Directory Object: ffffc3869983d0f0  Name: LSI_SAS3i
 ```
 Pass the drvobj as argument to io4
 
