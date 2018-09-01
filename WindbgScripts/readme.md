@@ -1,37 +1,14 @@
 # WindbgScripts
-* [pygen_kprcb](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#pygen_kprcb)
+* [pygen_kprcb](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#kprcb)
 * [io3](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#io3)
 * [io4](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#io4-2016)
 
-## pygen_kprcb
-This is a python script used to generate a [windbg script file](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/using-script-files)
- to help visualize information from the _KPRCB for each cpu.   
+## kprcb
+[windbg script file](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/using-script-files)
+to help visualize information from the _KPRCB for each cpu.   
 
-#### Installation:
-This requires python3 with no additional dependencies.
 
 #### Usage:
-`python pygen_kprcb.py <ncpu> <out_file>`   
-_ncpu_ is the highest number as reported by !cpuid   
-*out_file* is path where you want the generated script   
-   
-The resulting windbg script file is for __2012 r2/8.1__, if you attempt to run against 2012/8 target 
- you will need to modify the resulting <out_file> such that the Pseudo Register for _IsrDpcStats_ & _ActiveDpc_ is initialized to 0.
-
-
-__Example__ 
-```
-19: kd> !cpuid
-CP  F/M/S  Manufacturer     MHz
- 0  6,79,1  GenuineIntel    2197
- 1  6,79,1  GenuineIntel    2197
- 2  6,79,1  GenuineIntel    2197
-...
-19  6,79,1  GenuineIntel    2197
-```
-
-`python pygen_kprcb.py 19 c:\debuggers\scripts\kprcb.txt`
-
 Inside of windbg you may call the generated scriptfile 
 ```
 2: kd> $$><c:\debuggers\scripts\kprcb.txt

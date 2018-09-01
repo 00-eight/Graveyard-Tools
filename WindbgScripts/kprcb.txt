@@ -1,0 +1,42 @@
+$$
+$$ =============================================================================
+$$ _KPCRB info
+$$
+$$ Version: 2.0
+$$
+$$
+$$ Compatibility: Windows 2012 R2/8.1 or Later Kernel Space
+$$
+$$ Usage: $$><c:\debuggers\scripts\kpcrb.txt
+$$
+$$ Kristian Lamb
+$$
+$$ All my scripts are provided "AS IS" with no warranties, and confer no rights. 
+$$ =============================================================================
+$$
+
+.printf "                                       InterruptRequest\n"
+.printf "                                       |    InterruptRate\n"
+.printf "                                       |    |      QuantumEnd\n"
+.printf "                                       |    |      |         PeriodicCount\n"
+.printf "                                       |    |      |         |      LastTick\n"
+.printf "                                       |    |      |         |      |     DpcRoutineActive      DpcTimeCount\n"
+.printf "        KPRCB     CPU    IsrDpcStats   |    |      |         |      |     |       ActiveDpc     |    DpcTimeLimit\n"
+.printf " ---------------- --- ---------------- |    |      |         |      |     |   ----------------  |    ------------\n"
+.for ( r $t0 = nt!KiProcessorBlock ; $t0 < nt!KiProcessorBlock + dwo(nt!KeNumberProcessors)*8 ; r $t0 = @$t0 + 8) {
+	r $t1 = poi($t0)
+	r? $t1 = (nt!_KPRCB *)@$t1
+	r $t8 = @@(@$t1->LegacyNumber)
+	r $t9 = @@(@$t1->IsrDpcStats)
+	r $t10 = @@(@$t1->InterruptRequest)
+	r $t11 = @@(@$t1->InterruptRate)
+	r $t12 = @@(@$t1->QuantumEnd)
+	r $t13 = @@(@$t1->PeriodicCount)
+	r $t14 = @@(@$t1->LastTick)
+	r $t15 = @@(@$t1->DpcRoutineActive)
+	r $t2 = @@(@$t1->DpcData)
+	r $t16 = @@(((nt!_KDPC_DATA *)@$t2)->ActiveDpc)
+	r $t17 = @@(@$t1->DpcTimeCount)
+	r $t18 = @@(@$t1->DpcTimeLimit)
+	.printf " %p %3d %p %1p %08p  %1p         %1p   %07p  %1p   %p  %1p    %p\n",$t1,$t8,$t9,$t10,$t11,$t12,$t13,$t14,$t15,$t16,$t17,$t18
+	}
