@@ -1,5 +1,5 @@
 # WindbgScripts
-* [pygen_kprcb](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#kprcb)
+* [kprcb](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#kprcb)
 * [io3](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#io3)
 * [io4](https://github.com/00-eight/Graveyard-Tools/tree/master/WindbgScripts#io4-2016)
 
