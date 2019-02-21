@@ -1,0 +1,92 @@
+$$
+$$ =============================================================================
+$$ NDIS!_NDIS_FILTER_DRIVER_BLOCK info
+$$
+$$ Version: 1.0
+$$
+$$
+$$ Compatibility: Windows 10 Kernel Space
+$$
+$$ Usage: $$><c:\debuggers\scripts\ndisfilters.txt
+$$
+$$ Kristian Lamb
+$$
+$$ All my scripts are provided "AS IS" with no warranties, and confer no rights. 
+$$ =============================================================================
+$$
+
+.printf "ndisFilterDriverList %p\n\n",ndis!ndisFilterDriverList
+r? $t0 = ((_NDIS_FILTER_DRIVER_BLOCK*)@@(poi(ndis!ndisFilterDriverList)))
+.while (@@c++(@$t0->NextFilterDriver) != 0)
+{
+  .printf "_NDIS_FILTER_DRIVER_BLOCK %p - %msu\n",@$t0,@@c++(&@$t0->DefaultFilterCharacteristics.FriendlyName)
+  .if @@c++(@$t0->FilterQueue != 0)
+  {
+    .printf "   _NDIS_FILTER_BLOCK     Miniport           State        PendingOidRequest      FilterFriendlyName\n"
+    .printf "     ----------------  ----------------   ---------- -------------------------- -----------------------------------------\n"
+    r? $t1 = @$t0->FilterQueue
+    .while (@@c++(@$t1->NextFilter) != 0)
+    {
+      .if (@@c++(@$t1->PendingOidRequest) != 0)
+      {
+        r? $t2 = @@c++(@$t1->PendingOidRequest)
+        r? $t3 = ((_NDIS_OID_REQUEST::_REQUEST_DATA::_QUERY *)@@c++(&@$t2->DATA))
+        .printf "     %p  %p           %d   %p(  %0p)    %msu\n",@$t1,poi(@@c++(&@$t1->Miniport)),@@c++(@$t1->State),@$t2,@@c++(@$t3->Oid),@@c++(@$t1->FilterFriendlyName)
+      }
+      .else
+      {
+        .printf "     %p  %p           %d                                %msu\n",@$t1,poi(@@c++(&@$t1->Miniport)),@@c++(@$t1->State),@@c++(@$t1->FilterFriendlyName)
+      }
+      r? $t1 = @$t1->NextFilter
+    }
+    $$ last iter
+    .if (@@c++(@$t1->PendingOidRequest) != 0)
+      {
+        r? $t2 = @@c++(@$t1->PendingOidRequest)
+        r? $t3 = ((_NDIS_OID_REQUEST::_REQUEST_DATA::_QUERY *)@@c++(&@$t2->DATA))
+        .printf "     %p  %p           %d   %p(  %0p)  %msu\n",@$t1,poi(@@c++(&@$t1->Miniport)),@@c++(@$t1->State),@$t2,@@c++(@$t3->Oid),@@c++(@$t1->FilterFriendlyName)
+      }
+    .else
+      {
+        .printf "     %p  %p           %d                                %msu\n",@$t1,poi(@@c++(&@$t1->Miniport)),@@c++(@$t1->State),@@c++(@$t1->FilterFriendlyName)
+      }
+  }
+  .printf "\n"
+  r? $t0 = @$t0->NextFilterDriver
+}
+$$ last iter
+.block {
+  .printf "_NDIS_FILTER_DRIVER_BLOCK %p - %msu\n",@$t0,@@c++(&@$t0->DefaultFilterCharacteristics.FriendlyName)
+  .if @@c++(@$t0->FilterQueue != 0)
+  {
+    .printf "   _NDIS_FILTER_BLOCK     Miniport           State        PendingOidRequest      FilterFriendlyName\n"
+    .printf "     ----------------  ----------------   ---------- -------------------------- -----------------------------------------\n"
+    r? $t1 = @$t0->FilterQueue
+    .while (@@c++(@$t1->NextFilter) != 0)
+    {
+      .if (@@c++(@$t1->PendingOidRequest) != 0)
+      {
+        r? $t2 = @@c++(@$t1->PendingOidRequest)
+        r? $t3 = ((_NDIS_OID_REQUEST::_REQUEST_DATA::_QUERY *)@@c++(&@$t2->DATA))
+        .printf "     %p  %p           %d   %p(  %0p)    %msu\n",@$t1,poi(@@c++(&@$t1->Miniport)),@@c++(@$t1->State),@$t2,@@c++(@$t3->Oid),@@c++(@$t1->FilterFriendlyName)
+      }
+      .else
+      {
+        .printf "     %p  %p           %d                                %msu\n",@$t1,poi(@@c++(&@$t1->Miniport)),@@c++(@$t1->State),@@c++(@$t1->FilterFriendlyName)
+      }
+      r? $t1 = @$t1->NextFilter
+    }
+    $$ last iter
+    .if (@@c++(@$t1->PendingOidRequest) != 0)
+      {
+        r? $t2 = @@c++(@$t1->PendingOidRequest)
+        r? $t3 = ((_NDIS_OID_REQUEST::_REQUEST_DATA::_QUERY *)@@c++(&@$t2->DATA))
+        .printf "     %p  %p           %d   %p(  %0p)  %msu\n",@$t1,poi(@@c++(&@$t1->Miniport)),@@c++(@$t1->State),@$t2,@@c++(@$t3->Oid),@@c++(@$t1->FilterFriendlyName)
+      }
+    .else
+      {
+        .printf "     %p  %p           %d                                %msu\n",@$t1,poi(@@c++(&@$t1->Miniport)),@@c++(@$t1->State),@@c++(@$t1->FilterFriendlyName)
+      }
+  }
+  .printf "\n"
+}
