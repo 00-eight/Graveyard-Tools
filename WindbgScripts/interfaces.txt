@@ -1,0 +1,41 @@
+$$
+$$ =============================================================================
+$$ NDIS!_NDIS_IF_BLOCK info
+$$
+$$ Version: 1.0
+$$
+$$
+$$ Compatibility: Windows 10 Kernel Space
+$$
+$$ Usage: $$><c:\debuggers\scripts\interfaces.txt
+$$
+$$ Kristian Lamb
+$$
+$$ All my scripts are provided "AS IS" with no warranties, and confer no rights. 
+$$ =============================================================================
+$$
+
+r $t0 = NDIS!ndisIfList
+r? $t2 = #FIELD_OFFSET(_NDIS_IF_BLOCK,Link)
+r $t18 = 0
+r $t19 = 0
+
+.printf "ndisIfList %p\n\n",@$t0
+
+.for (r $t1 = poi(@$t0); (@$t1 != 0) & (@$t1 != @$t0); r $t1 = poi(@$t1))
+{
+  .if (@$t19=0)
+  {
+    .printf "#    Addr            If       IfAlias                   ifDescr\n"
+    .printf "-- ----------------  --  ---------------------------    -----------------------------------------------------\n"
+    $$       00 ffffe001b1d3b010   7  Local Area Connection* 6       WAN Miniport (IP)
+    r $t19 = 1
+  }
+  r $t3 = (@$t1-@$t2)
+  r? $t3 = ((_NDIS_IF_BLOCK*)@$t3)
+  .printf "%2d %p  %2d  ",@$t18,@$t3,@@(@$t3->ifIndex)
+  .if (@@c++(@$t3->ifAlias.Length) = 0){ .printf "                               "}
+  .else {.printf "%mu       ",@@(@$t3->ifAlias.String)}
+  .printf "%mu \n",@@(@$t3->ifDescr.String)
+  r $t18 = @$t18 + 1
+}
