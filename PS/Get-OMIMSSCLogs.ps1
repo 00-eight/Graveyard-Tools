@@ -44,14 +44,9 @@ stuff
     PROCESS {
         $base = "https://$ApplianceIp"
         $result = Invoke-WebRequest -Uri "$base/Spectre/logs"
-
         foreach ($hr in $result.Links.href) {
-            #write-host "$hr"
-            #if ($hr -like "*.log" -or $hr -like "*.txt"){
-            Write-Debug -Message "[Before] $hr"
             if ($hr -notlike "*/") {
                 $resp = Invoke-WebRequest -Uri ("$base"+"$hr")
-                Write-Debug -Message "[After] $hr"
                 $logname = $resp.BaseResponse.ResponseUri.LocalPath.Split('/')[-1]
                 $resp.RawContent > $logname
             }
